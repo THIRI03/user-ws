@@ -29,17 +29,17 @@ public class ServicesController {
         return serviceList;
     }
 
-    // Retrieve service by ID
-    @RequestMapping(method = RequestMethod.GET, path = "/getService/{id}")
-    public Service getServiceById(@PathVariable("id") int id) {
-        Service service = null;
+ // **New Method: Retrieve services by category ID**
+    @GetMapping("/getServicesByCategory/{categoryId}")
+    public ArrayList<Service> getServicesByCategory(@PathVariable("categoryId") int categoryId) {
+        ArrayList<Service> serviceList = new ArrayList<>();
         try {
             ServiceDAO db = new ServiceDAO();
-            service = db.getServiceById(id);
+            serviceList = db.getServicesByCategoryId(categoryId);  // Ensure this method exists in ServiceDAO
         } catch (Exception e) {
-            System.err.println("Error in getServiceById: " + e.getMessage());
+            System.err.println("Error in getServicesByCategory: " + e.getMessage());
             e.printStackTrace();
         }
-        return service;
+        return serviceList;
     }
 }

@@ -38,33 +38,34 @@ public class ServiceDAO {
         return services;
     }
 
-    // Retrieve service by ID
-    public Service getServiceById(int id) {
-        Service service = null;
-        String sql = "SELECT * FROM service WHERE id = ?";
+ // Retrieve services by category ID
+    public ArrayList<Service> getServicesByCategoryId(int categoryId) {
+        ArrayList<Service> services = new ArrayList<>();
+        String sql = "SELECT * FROM service WHERE category_id = ? ORDER BY id";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
-            statement.setInt(1, id);
+            statement.setInt(1, categoryId);
             ResultSet rs = statement.executeQuery();
 
-            if (rs.next()) {
-                service = new Service();
+            while (rs.next()) {
+                Service service = new Service();
                 service.setId(rs.getInt("id"));
                 service.setName(rs.getString("name"));
                 service.setDescription(rs.getString("description"));
                 service.setPrice(rs.getDouble("price"));
                 service.setCategory_id(rs.getInt("category_id"));
                 service.setImage(rs.getString("image"));
-            } else {
-                System.out.println("No service found with ID " + id);
+                services.add(service);
             }
+
         } catch (SQLException e) {
-            System.err.println("Error retrieving service by ID: " + e.getMessage());
+            System.err.println("Error retrieving services by category ID: " + e.getMessage());
             e.printStackTrace();
         }
 
-        return service;
+        return services;
     }
+
 }
