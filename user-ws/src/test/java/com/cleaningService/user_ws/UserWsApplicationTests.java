@@ -8,6 +8,7 @@ class UserWsApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }
