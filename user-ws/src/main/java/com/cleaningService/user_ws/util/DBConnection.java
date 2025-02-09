@@ -1,4 +1,3 @@
-
 package com.cleaningService.user_ws.util;
 import java.sql.*;
 
@@ -32,5 +31,4 @@ public class DBConnection {
     public static void main(String[] args) {
     	testConnection();
     }
-
 }
