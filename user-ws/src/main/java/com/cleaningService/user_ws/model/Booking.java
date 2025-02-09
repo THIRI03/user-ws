@@ -1,3 +1,8 @@
+//    JAD-CA2
+//    Class-DIT/FT/2A/23
+//    Student Name: Thiri Lae Win
+//    Admin No.: P2340739
+
 package com.cleaningService.user_ws.model;
 
 public class Booking {
