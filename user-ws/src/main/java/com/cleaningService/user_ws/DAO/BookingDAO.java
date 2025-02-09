@@ -15,11 +15,12 @@ public class BookingDAO {
 	public List<Booking> retrieveAllBookings(){
 		List<Booking> bookings = new ArrayList<>();
 		 
-		String sql = "SELECT b.id, u.name AS customer_name, s.name AS service_name, b.booking_date, b.booking_time , b.status, b.special_request, b.service_address, b.duration  "
-				+ "FROM bookings b " + "JOIN users u ON b.userid = u.id " + "JOIN service s ON b.serviceid = s.id "
-						+ "WHERE b.cleaner_id IS NOT NULL "
-						+ "AND b.status != 'Not Completed' "
-				+ "ORDER BY b.id ASC";
+		String sql = "SELECT b.id, u.name AS customer_name, s.name AS service_name, b.booking_date, b.booking_time , "
+				+ "b.status, b.special_request, b.service_address, b.duration "
+				+"FROM bookings b JOIN users u ON b.userid = u.id JOIN service s ON b.serviceid = s.id "
+				+"WHERE b.cleaner_id IS NULL "
+				+"AND b.status = 'Not Completed' "
+				+ "ORDER BY b.id";
 
 		try (Connection connection = DBConnection.getConnection();
 				PreparedStatement pstmt = connection.prepareStatement(sql);
