@@ -8,7 +8,7 @@ class UserWsApplicationTests {
 
 	@Test
 	void contextLoads() {
-		System.out.print("test");
+		
 	}
 
 }
